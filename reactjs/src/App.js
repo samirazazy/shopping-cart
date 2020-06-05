@@ -1,0 +1,59 @@
+import React from "react";
+
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import "./App.css";
+
+import HomeScreen from "./screens/HomeScreen.js";
+import ItemScreen from "./screens/ItemScreen.js";
+
+function App() {
+  const openSidebar = () =>
+    document.querySelector(".aside").classList.add("open");
+  const closeSidebar = () =>
+    document.querySelector(".aside").classList.remove("open");
+
+  return (
+    <BrowserRouter>
+      <div className="container">
+        <header className="header">
+          <div className="brandName">
+            <button onClick={openSidebar}>&#x2630;</button>
+            <Link to="/">BRAND</Link>
+          </div>
+          <div className="headerLinks">
+            <Link to="SignIn">SignIn</Link>
+            <Link to="Card">Card</Link>
+          </div>
+        </header>
+        <aside className="aside">
+          <h3>Categories</h3>
+          <button className="closeSidebar" onClick={closeSidebar}>
+            X
+          </button>
+          <ul>
+            <li>
+              <Link to="">Pants</Link>
+            </li>
+            <li>
+              <Link to="">shirts</Link>
+            </li>
+            <li>
+              <Link to="">shos</Link>
+            </li>
+          </ul>
+        </aside>
+
+        <main className="main">
+          <div className="content">
+            <Route path="/items/:id" component={ItemScreen} />
+            <Route path="/" exact={true} component={HomeScreen} />
+          </div>
+        </main>
+
+        <footer className="footer">All rights reserved!</footer>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+export default App;
