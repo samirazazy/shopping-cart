@@ -18,4 +18,7 @@ const addToBasket = (itemId, quantaty) => async (dispatch) => {
   }
 };
 
-export { addToBasket };
+const deleteFromBasket = (itemId) => (dispatch) => {
+  dispatch({ type: "BASKET_DELETE_ITEM", payload: itemId });
+};
+export { addToBasket, deleteFromBasket };

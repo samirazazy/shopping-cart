@@ -13,6 +13,12 @@ function basketReducer(state = { basketItems: [] }, action) {
         };
       }
       return { basketItems: [...state.basketItems, item] };
+    case "BASKET_DELETE_ITEM":
+      return {
+        basketItems: state.basketItems.filter(
+          (el) => el.item !== action.payload
+        ),
+      };
     default:
       return state;
   }
