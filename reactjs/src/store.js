@@ -5,8 +5,11 @@ import {
   itemDetailsReducer,
 } from "./reducers/productReducers";
 import { basketReducer } from "./reducers/basketReducer";
+import Cookie from "js-cookie";
 
-const initialState = {};
+const basketItems = Cookie.getJSON("basketItems") || [];
+
+const initialState = { basket: { basketItems } };
 const reducer = combineReducers({
   itemList: itemListReducer,
   itemDetails: itemDetailsReducer,

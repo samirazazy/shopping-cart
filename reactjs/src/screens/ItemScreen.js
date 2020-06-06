@@ -13,7 +13,9 @@ function ItemScreen(props) {
     return () => {
       //
     };
-  }, []);
+  }, [dispatch,props.match.params.id]);
+
+ 
 
   const addToBasket = () => {
     props.history.push(

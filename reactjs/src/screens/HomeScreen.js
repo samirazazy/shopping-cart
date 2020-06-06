@@ -13,7 +13,9 @@ function HomeScreen(props) {
     return () => {
       //
     };
-  }, []);
+  }, [dispatch]);
+
+  
 
   return loading ? (
     <div>Items are currently loading...</div>

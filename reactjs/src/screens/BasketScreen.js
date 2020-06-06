@@ -16,11 +16,12 @@ function BasketScreen(props) {
   const deleteItem = (productId) => {
     dispatch(deleteFromBasket(productId));
   };
+
   useEffect(() => {
     if (productId) {
       dispatch(addToBasket(productId, quantaty));
     }
-  }, []);
+  }, [dispatch,productId,quantaty]);
 
   const checkout = () => {
     props.history.push("/");
