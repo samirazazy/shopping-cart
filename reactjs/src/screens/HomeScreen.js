@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
-import axios from "axios";
+import { listItems } from "../functions/itemsFunctions";
+import { useSelector, useDispatch } from "react-redux";
 
 function HomeScreen(props) {
-  const [items, setItem] = useState([]);
+  const itemList = useSelector((state) => state.itemList);
+  const { items, loading, error } = itemList;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get("/api/items");
-      setItem(data);
-    };
-    fetchData();
+    dispatch(listItems());
     return () => {
       //
     };
   }, []);
 
-  return (
+  return loading ? (
+    <div>Items are currently loading...</div>
+  ) : error ? (
+    <div>{error}</div>
+  ) : (
     <ul className="items">
       {items.map((item) => (
         <li key={item._id}>
