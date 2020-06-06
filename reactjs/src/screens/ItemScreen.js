@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { detailsItem } from "../functions/itemsFunctions";
@@ -7,13 +7,19 @@ function ItemScreen(props) {
   const itemDetails = useSelector((state) => state.itemDetails);
   const { item, loading, error } = itemDetails;
   const dispatch = useDispatch();
-
+  const [quantaty, setQuantity] = useState(1);
   useEffect(() => {
     dispatch(detailsItem(props.match.params.id));
     return () => {
       //
     };
   }, []);
+
+  const addToBasket = () => {
+    props.history.push(
+      "/basket/" + props.match.params.id + "?quantaty=" + quantaty
+    );
+  };
 
   return (
     <div>
@@ -51,14 +57,19 @@ function ItemScreen(props) {
               <li>Status: Available</li>
               <li>
                 Quantity:
-                <select>
+                <select
+                  val={quantaty}
+                  onChange={(e) => setQuantity(e.target.value)}
+                >
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
                 </select>
               </li>
               <li>
-                <button className="addToCart">Add to Cart</button>
+                <button className="addToBasket" onClick={addToBasket}>
+                  Add to Cart
+                </button>
               </li>
             </ul>
           </div>

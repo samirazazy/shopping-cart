@@ -5,6 +5,7 @@ import "./App.css";
 
 import HomeScreen from "./screens/HomeScreen.js";
 import ItemScreen from "./screens/ItemScreen.js";
+import BasketScreen from "./screens/BasketScreen";
 
 function App() {
   const openSidebar = () =>
@@ -45,8 +46,9 @@ function App() {
 
         <main className="main">
           <div className="content">
-            <Route path="/items/:id" component={ItemScreen} />
             <Route path="/" exact={true} component={HomeScreen} />
+            <Route path="/items/:id" component={ItemScreen} />
+            <Route path="/basket/:id" component={BasketScreen} />
           </div>
         </main>
 

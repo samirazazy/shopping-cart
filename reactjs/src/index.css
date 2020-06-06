@@ -209,7 +209,7 @@ a:hover {
   flex-direction: column;
 }
 
-.addToCart {
+.addToBasket {
   padding: 1rem;
   border: 0.1rem solid #888;
   cursor: pointer;
