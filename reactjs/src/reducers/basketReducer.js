@@ -3,24 +3,26 @@ function basketReducer(state = { basketItems: [] }, action) {
     case "PASKET_ADD_ITEM":
       const item = action.payload;
       const product = state.basketItems.find(
-        (el) => el.product === item.product
+        el => el.product === item.product
       );
       if (product) {
         return {
-          basketItems: state.basketItems.map((el) =>
+          basketItems: state.basketItems.map( el =>
             el.product === product.product ? item : el
           ),
         };
       }
       return { basketItems: [...state.basketItems, item] };
-    case "BASKET_DELETE_ITEM":
+    
+      case "BASKET_DELETE_ITEM":
       return {
         basketItems: state.basketItems.filter(
-          (el) => el.item !== action.payload
+          el => el.product !== action.payload
         ),
       };
-    default:
-      return state;
+    
+      default:
+      return state
   }
 }
 

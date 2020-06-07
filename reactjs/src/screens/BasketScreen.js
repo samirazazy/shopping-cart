@@ -9,19 +9,21 @@ function BasketScreen(props) {
   const { basketItems } = basket;
 
   const productId = props.match.params.id;
-  const quantaty = props.location.search
+  const qty  = props.location.search
     ? Number(props.location.search.split("=")[1])
     : 1;
   const dispatch = useDispatch();
+
   const deleteItem = (productId) => {
     dispatch(deleteFromBasket(productId));
+    console.log('Deleting')
   };
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToBasket(productId, quantaty));
+      dispatch(addToBasket(productId, qty ));
     }
-  }, [dispatch,productId,quantaty]);
+  }, [dispatch,productId,qty]);
 
   const checkout = () => {
     props.history.push("/");
@@ -35,28 +37,28 @@ function BasketScreen(props) {
             <h3>Shopping Cart</h3>
             <div>Price</div>
           </li>
-          {basketItems.length === 0 ? (
+          {basketItems.length === 0 ? 
             <div>
               Your Shopping Cart is empty...
               <br></br>
               <Link to="/">Go Shopping</Link>
             </div>
-          ) : (
+           : 
             basketItems.map((item) => (
-              <li key={item.item}>
+              <li key={item.product}>
                 <div className="basketImage">
                   <img src={item.image} alt="product" />
                 </div>
                 <div className="basketName">
                   <div>
-                    <Link to={"/items/" + item.item}>{item.name}</Link>
+                    <Link to={"/item/" + item.product}>{item.name}</Link>
                   </div>
                   <div>
                     quantaty:
                     <select
-                      value={item.quantaty}
+                      value={item.qty}
                       onChange={(e) =>
-                        dispatch(addToBasket(item.item, e.target.value))
+                        dispatch(addToBasket(item.product, e.target.value))
                       }
                     >
                       <option value="1">1</option>
@@ -66,7 +68,7 @@ function BasketScreen(props) {
                     <button
                       type="button"
                       className="button"
-                      onClick={() => deleteItem(item.item)}
+                      onClick={() => deleteItem(item.product)}
                     >
                       Delete
                     </button>
@@ -75,13 +77,14 @@ function BasketScreen(props) {
                 <div className="basketPrice">${item.price}</div>
               </li>
             ))
-          )}
+          }
         </ul>
       </div>
+
       <div className="cart-action">
         <h3>
-          Subtotal ( {basketItems.reduce((a, c) => a + c.quantaty, 0)} items) :
-          {basketItems.reduce((a, c) => a + c.price * c.quantaty, 0)}
+        Subtotal ( {basketItems.reduce((a, c) => a + c.qty, 0)} items) :
+        $ {basketItems.reduce((a, c) => a + c.price * c.qty, 0)}
         </h3>
         <button
           disabled={basketItems.length === 0}

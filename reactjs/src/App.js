@@ -46,9 +46,9 @@ function App() {
 
         <main className="main">
           <div className="content">
-            <Route path="/" exact={true} component={HomeScreen} />
-            <Route path="/items/:id" component={ItemScreen} />
+            <Route path="/item/:id" component={ItemScreen} />
             <Route path="/basket/:id" component={BasketScreen} />
+            <Route path="/" exact={true} component={HomeScreen} />
           </div>
         </main>
 
