@@ -33,13 +33,13 @@ function App() {
           </button>
           <ul>
             <li>
-              <Link to="">Pants</Link>
+              <Link to="/">All</Link>
             </li>
             <li>
-              <Link to="">shirts</Link>
+              <Link to="/">Women</Link>
             </li>
             <li>
-              <Link to="">shos</Link>
+              <Link to="/">Men</Link>
             </li>
           </ul>
         </aside>

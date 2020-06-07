@@ -3,39 +3,45 @@ import { addToBasket, deleteFromBasket } from "../functions/basketActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+// import Counter from '../components/Counter'
+
+
 function BasketScreen(props) {
+ 
   const basket = useSelector((state) => state.basket);
 
   const { basketItems } = basket;
 
-  const productId = props.match.params.id;
-  const qty  = props.location.search
+
+  const itemId = props.match.params.id;
+  const quantaty  = props.location.search
     ? Number(props.location.search.split("=")[1])
     : 1;
   const dispatch = useDispatch();
 
-  const deleteItem = (productId) => {
-    dispatch(deleteFromBasket(productId));
+  const deleteItem = (itemId) => {
+    dispatch(deleteFromBasket(itemId));
     console.log('Deleting')
   };
 
   useEffect(() => {
-    if (productId) {
-      dispatch(addToBasket(productId, qty ));
+    
+    if (itemId) {
+      dispatch(addToBasket(itemId, quantaty ));
     }
-  }, [dispatch,productId,qty]);
+  }, [dispatch,itemId,quantaty]);
 
   const checkout = () => {
-    props.history.push("/");
+    // props.history.push("/");
   };
+
 
   return (
     <div className="basket">
       <div className="basketList">
         <ul className="basketListContainer">
-          <li>
-            <h3>Shopping Cart</h3>
-            <div>Price</div>
+          <li className="shoppingCart">
+            Shopping Cart
           </li>
           {basketItems.length === 0 ? 
             <div>
@@ -47,50 +53,81 @@ function BasketScreen(props) {
             basketItems.map((item) => (
               <li key={item.product}>
                 <div className="basketImage">
-                  <img src={item.image} alt="product" />
-                </div>
+                    <Link to={"/item/" + item.product}>
+                      <img src={item.image} alt="product" />
+                    </Link>
+                  </div>
+
                 <div className="basketName">
-                  <div>
-                    <Link to={"/item/" + item.product}>{item.name}</Link>
+                      <Link to={"/item/" + item.product}>{item.name}</Link>
+                      <div>{item.description}</div>
                   </div>
-                  <div>
-                    quantaty:
-                    <select
-                      value={item.qty}
-                      onChange={(e) =>
-                        dispatch(addToBasket(item.product, e.target.value))
-                      }
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                    <button
-                      type="button"
-                      className="button"
-                      onClick={() => deleteItem(item.product)}
-                    >
-                      Delete
-                    </button>
-                  </div>
+
+                <div className="basketQuantaty ">
+                  {/* <div className=" basketButton">
+                    <button type="button"
+                    onClick={() => deleteItem(item.product)} >+</button>
+                  </div> */}
+                  {item.quantaty}
+                  {/* <div className=" basketButton">
+                    <button type="button"
+                    onClick={() => deleteItem(item.product)} >_</button>
+                  </div> */}
                 </div>
+                    
+                <div className="basketDelet basketButton">
+                  <button type="button"
+                  onClick={() => deleteItem(item.product)} >X</button>
+                </div>
+                  
                 <div className="basketPrice">${item.price}</div>
               </li>
             ))
           }
+          <li>
+            <div className="continueShopping">
+              <Link to="/">&#11013;</Link>
+              <Link to={"/"} >Continue Shopping</Link>
+            </div>
+            
+            
+            <div>
+            <span className="subtotal">Subtotal: </span>
+            <span  className="total">${basketItems.reduce((x, y) => x + y.price * y.quantaty, 0)}</span>
+            </div>
+          </li>
         </ul>
       </div>
 
-      <div className="cart-action">
-        <h3>
-        Subtotal ( {basketItems.reduce((a, c) => a + c.qty, 0)} items) :
-        $ {basketItems.reduce((a, c) => a + c.price * c.qty, 0)}
-        </h3>
+      <div className="basketAction">
+      
+      <ul className="actionContainer">
+        <li>
+        <b>Number of items: </b>     
+        {basketItems.reduce((x, y) => x + y.quantaty, 0)} items 
+        </li>
+        <li>
+          <b>Item Sub-Total: </b>
+           {basketItems.reduce((x, y) => x + y.price * y.quantaty, 0)} 
+        </li>
+        <li>
+          <b>Shipping: </b>
+           <i> FREE</i> 
+        </li>
+        <li className="basketTotal">
+          <b>Total:</b>
+           {basketItems.reduce((x, y) => x + y.price * y.quantaty, 0)} 
+        </li>
+      </ul>
+        
+       
+    
         <button
           disabled={basketItems.length === 0}
           onClick={checkout}
           className="checkout"
         >
+          
           Checkout
         </button>
       </div>

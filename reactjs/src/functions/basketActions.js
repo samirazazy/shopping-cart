@@ -1,16 +1,17 @@
 import Axios from "axios";
 import Cookie from "js-cookie";
 
-const addToBasket = (productId, qty) => async (dispatch, getState) => {
+const addToBasket = (ItemId, quantaty) => async (dispatch, getState) => {
   try {
-    const { data } = await Axios.get("/api/items/" + productId);
+    const { data } = await Axios.get("/api/items/" + ItemId);
     dispatch({
       type: "PASKET_ADD_ITEM", payload: {
         product: data._id,
         name: data.name,
         image: data.image,
         price: data.price,
-        qty
+        description: data.description,
+        quantaty
       }   
     });
 
@@ -21,8 +22,8 @@ const addToBasket = (productId, qty) => async (dispatch, getState) => {
   }
 };
 
-const deleteFromBasket = (productId) => (dispatch, getState) => {
-  dispatch({ type: "BASKET_DELETE_ITEM", payload: productId });
+const deleteFromBasket = (ItemId) => (dispatch, getState) => {
+  dispatch({ type: "BASKET_DELETE_ITEM", payload: ItemId });
   const {basket: {basketItems}} = getState();
   Cookie.set("cartItems", JSON.stringify(basketItems));
 };

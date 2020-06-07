@@ -7,6 +7,7 @@ export default {
       image: "/images/1.jpg",
       price: 200,
       category: "women",
+      itemsNumber:4,
       details:
         "Faithful to its creative style, Officine Générale proposes this short woolen jacket with neat finishes and details. This long-sleeved garment fits naturally at the waist and the shoulders and is enhanced by several pockets and an elegant collar. The iconic style of the Officine Générale brand is reflected in this very elegant jacket. We would wear it with a pair of woolen pants and leather ankle boots. Color: Black",
     },
@@ -17,6 +18,7 @@ export default {
       image: "/images/2.jpg",
       price: 100,
       category: "men",
+      itemsNumber:2,
       details:
         "Switch out the jeans. The Salco Chino are a smart-casual trouser, featuring an unpressed double pleat with a tapered leg for a more fitted shape. Double pleatCroppedTapered ankleModel is 6'1, 85cm and size 32 Slim fit100% cottonDelicate machine washWash inside out. Color: black",
     },
@@ -27,6 +29,7 @@ export default {
       image: "/images/3.jpg",
       price: 150,
       category: "men",
+      itemsNumber:3,
       details:
         "Fits small, order next size up. Pull-on. Elastic goring at sides for a flexible fit. Pull tab at heel. Suede; lining: leather; sole: leather. Spot clean. Made in portugal. Color: black",
     },
