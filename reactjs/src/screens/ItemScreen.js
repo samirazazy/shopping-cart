@@ -39,21 +39,21 @@ function ItemScreen(props) {
           <div className="detailsInformation">
             <ul>
               <li>
-                <h4>{item.name}</h4>
+                <h3>{item.name}</h3>
+              </li>
+              <li className="itemDescription">
+               {item.description}
               </li>
               <li>
-                <h4>{item.description}</h4>
+                Price: ${item.price}
               </li>
               <li>
-                <h4>{item.price}$</h4>
+               {item.details}
               </li>
-              <li>
-                <h4>{item.details}</h4>
+              <li className="continueShopping">
+                <Link to="/">&#11013;</Link>
+                <Link to={"/"} >Continue Shopping</Link>
               </li>
-              <div className="continueShopping">
-              <Link to="/">&#11013;</Link>
-              <Link to={"/"} >Continue Shopping</Link>
-            </div>
             </ul>
           </div>
           <div className="detailsAction">

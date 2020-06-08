@@ -44,22 +44,22 @@ function BasketScreen(props) {
             Shopping Cart
           </li>
           {basketItems.length === 0 ? 
-            <div>
+            <div className="emptyCart">
               Your Shopping Cart is empty...
-              <br></br>
+              
               <Link to="/">Go Shopping</Link>
             </div>
            : 
             basketItems.map((item) => (
               <li key={item.product}>
                 <div className="basketImage">
-                    <Link to={"/item/" + item.product}>
+                    <Link  to={"/item/" + item.product}>
                       <img src={item.image} alt="product" />
                     </Link>
                   </div>
 
                 <div className="basketName">
-                      <Link to={"/item/" + item.product}>{item.name}</Link>
+                      <Link className="itemName" to={"/item/" + item.product}>{item.name}</Link>
                       <div>{item.description}</div>
                   </div>
 

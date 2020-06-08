@@ -102,6 +102,7 @@ a:hover {
 
 .itemDescription {
   font-size: 1.5rem;
+  color: #777;
 }
 
 .itemPrice {
@@ -163,20 +164,43 @@ a:hover {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  padding: 2rem;
+  padding: 1rem;
 }
 
+.itemDetails ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.itemDetails ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+ 
 .detailsImage {
-  flex: 2 1 50rem;
+  flex: 1 1 40rem;
+ 
 }
 
 .detailsInformation {
-  flex: 1 1 30rem;
+  flex: 1 1 40rem;
+  padding:2rem;
+  line-height: 1.5;
 }
 
 .detailsImage img {
-  max-width: 50rem;
+  max-width: 60rem;
   width: 100%;
+}
+
+.detailsInformation ul li:first-child {
+  font-size: 2rem;
+}
+
+.detailsInformation ul li:last-child {
+  font-size: 1.7rem;
+  padding-top: 2rem;
 }
 
 .detailsAction {
@@ -214,13 +238,17 @@ a:hover {
   flex-wrap: wrap;
 }
 
+.emptyCart {
+  text-align: center;
+}
+
 .shoppingCart {
   font-size: 2.5rem;
   font-weight: bold;
 }
 .basketList {
   flex: 3 1 60rem;
-  padding: 2rem;
+  padding: 0rem 2rem 2rem 2rem;
 }
 
 .basketAction {
@@ -237,7 +265,7 @@ a:hover {
 
 .basketListContainer {
   list-style-type: none;
-  padding: 2rem;
+  padding: 0rem 2rem 2rem 2rem;
 }
 
 .basketListContainer li {
@@ -266,6 +294,10 @@ a:hover {
 .basketName {
   flex: 5 1;
   font-weight: bold;
+}
+
+.basketName .itemName{
+  color: #000;
 }
 
 .basketQuantaty {
@@ -299,11 +331,17 @@ a:hover {
   color: #fff;
   padding-top: 1rem;
   font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.continueShopping a:last-child {
+ color: blue;
 }
 
 .subtotal {
   font-size: 2rem;
   color: #777;
+  
 }
 
 .total {
