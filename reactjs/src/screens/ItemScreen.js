@@ -32,7 +32,9 @@ function ItemScreen(props) {
       ) : error ? (
         <div>{error}</div>
       ) : (
+        
         <div className="itemDetails">
+          
           <div className="detailsImage">
             <img src={item.image} alt="item"></img>
           </div>
@@ -54,6 +56,7 @@ function ItemScreen(props) {
                 <Link to="/">&#11013;</Link>
                 <Link to={"/"} >Continue Shopping</Link>
               </li>
+              
             </ul>
           </div>
           <div className="detailsAction">

@@ -3,9 +3,6 @@ import { addToBasket, deleteFromBasket } from "../functions/basketActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-// import Counter from '../components/Counter'
-
-
 function BasketScreen(props) {
  
   const basket = useSelector((state) => state.basket);
@@ -35,6 +32,8 @@ function BasketScreen(props) {
     // props.history.push("/");
   };
 
+ 
+
 
   return (
     <div className="basket">
@@ -50,6 +49,7 @@ function BasketScreen(props) {
               <Link to="/">Go Shopping</Link>
             </div>
            : 
+          
             basketItems.map((item) => (
               <li key={item.product}>
                 <div className="basketImage">
@@ -64,24 +64,17 @@ function BasketScreen(props) {
                   </div>
 
                 <div className="basketQuantaty ">
-                  {/* <div className=" basketButton">
-                    <button type="button"
-                    onClick={() => deleteItem(item.product)} >+</button>
-                  </div> */}
                   {item.quantaty}
-                  {/* <div className=" basketButton">
-                    <button type="button"
-                    onClick={() => deleteItem(item.product)} >_</button>
-                  </div> */}
                 </div>
-                    
+                
                 <div className="basketDelet basketButton">
                   <button type="button"
                   onClick={() => deleteItem(item.product)} >X</button>
                 </div>
-                  
+          
                 <div className="basketPrice">${item.price}</div>
               </li>
+             
             ))
           }
           <li>
