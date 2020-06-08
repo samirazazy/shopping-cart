@@ -65,13 +65,14 @@ function BasketScreen(props) {
 
                 <div className="basketQuantaty ">
                   {item.quantaty}
+                  <button > + </button>
                 </div>
-                
+
                 <div className="basketDelet basketButton">
                   <button type="button"
                   onClick={() => deleteItem(item.product)} >X</button>
                 </div>
-          
+
                 <div className="basketPrice">${item.price}</div>
               </li>
              
