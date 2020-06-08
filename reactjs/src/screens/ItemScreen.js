@@ -47,9 +47,9 @@ function ItemScreen(props) {
                {item.description}
               </li>
               <li>
-                Price: ${item.price}
+                Price: <b>${item.price}</b>
               </li>
-              <li>
+              <li className="itemInfo">
                {item.details}
               </li>
               <li className="continueShopping">

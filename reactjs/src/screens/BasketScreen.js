@@ -1,21 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState } from "react";
 import { addToBasket, deleteFromBasket } from "../functions/basketActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function BasketScreen(props) {
- 
+
   const basket = useSelector((state) => state.basket);
 
   const { basketItems } = basket;
 
+  
 
   const itemId = props.match.params.id;
-  const quantaty  = props.location.search
+  let quantaty  = props.location.search
     ? Number(props.location.search.split("=")[1])
     : 1;
   const dispatch = useDispatch();
-
+  const [count, setCount] = useState(quantaty);
   const deleteItem = (itemId) => {
     dispatch(deleteFromBasket(itemId));
     console.log('Deleting')
@@ -24,15 +25,13 @@ function BasketScreen(props) {
   useEffect(() => {
     
     if (itemId) {
-      dispatch(addToBasket(itemId, quantaty ));
+      dispatch(addToBasket(itemId, count ));
     }
-  }, [dispatch,itemId,quantaty]);
+  }, [dispatch,itemId,count]);
 
   const checkout = () => {
     // props.history.push("/");
   };
-
- 
 
 
   return (
@@ -64,16 +63,17 @@ function BasketScreen(props) {
                   </div>
 
                 <div className="basketQuantaty ">
-                  {item.quantaty}
-                  <button > + </button>
-                </div>
-
-                <div className="basketDelet basketButton">
-                  <button type="button"
-                  onClick={() => deleteItem(item.product)} >X</button>
+                  <button className="quantatyButton" onClick={() =>{ setCount(count - 1)}} > &#x2796; </button>
+                  <p className="quantatyNumber">{count}</p>
+                  <button className="quantatyButton" onClick={() =>{ setCount(count + 1)}} > &#x2795; </button>
                 </div>
 
                 <div className="basketPrice">${item.price}</div>
+
+                <div className="basketDelet basketButton">
+                  <button type="button"
+                  onClick={() => deleteItem(item.product)} > X </button>
+                </div>
               </li>
              
             ))
